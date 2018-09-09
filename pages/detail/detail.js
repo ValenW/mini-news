@@ -6,16 +6,11 @@ Page({
     
   },
 
-  onLoad() {
-    
-  },
-
-  onPullDownRefresh() {
+  onLoad(options) {
     
   },
   
-  logFail(requestFor, res) {
-    console.log("Error when " + requestFor + ":");
-    console.log(res);
+  onPullDownRefresh() {
+    
   },
 })

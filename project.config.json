@@ -11,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.4",
+	"libVersion": "2.2.2",
 	"appid": "wx0c568c390e461a2b",
-	"projectname": "News%20mini",
+	"projectname": "whether",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -24,13 +24,23 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/detail/detail"
+				}
+			]
 		}
 	}
 }
