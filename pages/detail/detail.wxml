@@ -7,7 +7,7 @@
   </view>
   <view class='content' wx:for='{{content}}'>
     <view class='content-text' wx:if='{{item.type == "p"}}'>{{item.text}}</view>
-    <image class='content-img' wx:elif='{{item.type == "image"}}' src='{{item.src}}'></image>
+    <image class='content-img' wx:elif='{{item.type == "image"}}' src='{{item.src}}' mode='widthFix'></image>
     <view class='content-strong' wx:elif='{{item.type == "strong"}}'>{{item.text}}</view>
     <view class='content-other' wx:else>{{item.text}}</view>
   </view>
