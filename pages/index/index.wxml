@@ -6,9 +6,10 @@
   </view>
 </view>
 
-<view class='hot-news-wrapper'>
+<view class='hot-news-wrapper' bindtap='onNewsTap' data-news-id='{{hotNews.id}}'>
   <image class='hot-bg-img' mode='aspectFill' src='{{hotNews.firstImage}}'></image>
   <view class='hot-news'>
+    <view class='hot-tag'>热门</view>
     <view class='hot-title'>{{hotNews.title}}</view>
     <view class='news-source-info hot-source-info'>
       <view class='news-source'>{{hotNews.source}}</view>

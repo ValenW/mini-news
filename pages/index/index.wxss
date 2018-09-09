@@ -53,6 +53,20 @@
   border: 25rpx solid rgba(255, 255, 255, 0.9);
 }
 
+.hot-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 0, 0, 0.7);
+  border-bottom-left-radius: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 42rpx;
+  padding: 8rpx 8rpx 10rpx 20rpx;
+  color: white;
+
+}
+
 .hot-bg-img {
   position: absolute;
   top: 0;
