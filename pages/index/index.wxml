@@ -1,1 +1,31 @@
 <!--index.wxml-->
+<view class='news-type-wrapper'>
+  <view wx:for='{{newsTypes}}' class='news-type-item {{item.type == selectedType ? "selected" : ""}}' bindtap='onNewsTypeTap' wx:for-index='idx' data-index='{{idx}}'>
+    <view class='news-type-name'>{{item.name}}</view>
+    <view class='news-type-underline'></view>
+  </view>
+</view>
+
+<view class='hot-news-wrapper'>
+  <image class='hot-bg-img' src='{{hotNews.firstImage}}'></image>
+  <view class='hot-news'>
+    <view class='hot-title'>{{hotNews.title}}</view>
+    <view class='news-source-info hot-source-info'>
+      <view class='news-source'>{{hotNews.source}}</view>
+      <view class='news-date'>{{hotNews.date}}</view>
+    </view>
+  </view>
+</view>
+
+<view class='news-list-wrapper'>
+  <view wx:for='{{newsList}}' class='news-item' bindtap='onNewsTap' data-news-id='{{item.id}}'>
+    <view class='news-info'>
+      <view class='news-title'>{{item.title}}</view>
+      <view class='news-source-info'>
+        <view class='news-source'>{{item.source}}</view>
+        <view class='news-date'>{{item.date}}</view>
+      </view>
+    </view>
+    <image class='news-image' src='{{item.firstImage}}'></image>
+  </view>
+</view>

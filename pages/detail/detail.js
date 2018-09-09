@@ -3,13 +3,13 @@ const weatherFutureAPI = "https://test-miniprogram.com/api/news/detail";
 
 Page({
   data: {
-    
+    newsId: "",
   },
 
   onLoad(options) {
     
   },
-  
+
   onPullDownRefresh() {
     
   },
