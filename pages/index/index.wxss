@@ -138,3 +138,11 @@
   border-radius: 5rpx;
   margin-left: 15rpx;
 }
+
+.out-wrapper {
+  min-height: 100%;
+}
+
+page {
+  height: 100%;
+}
