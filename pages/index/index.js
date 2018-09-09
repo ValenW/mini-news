@@ -1,5 +1,4 @@
 const newsListAPI = "https://test-miniprogram.com/api/news/list";
-const newsDetailAPI = "https://test-miniprogram.com/api/news/detail";
 const newsTypes = [
   { name: "国内", type: "gn" },
   { name: "国际", type: "gj" },
@@ -10,6 +9,8 @@ const newsTypes = [
   { name: "其他", type: "other" },
 ];
 
+var util = require('../../utils/util.js');
+
 Page({
   data: {
     newsTypes: newsTypes,
@@ -17,19 +18,11 @@ Page({
     hotNews: {
       id: 1519631218506,
       title: "外媒称香港回归15年打破经济将死预言",
-      date: "2012-04-21T11:32:04.000Z",
+      date: "11:32",
       source: "中国新闻网",
       firstImage: "http://img1.gtimg.com/news/pics/hv1/38/85/1076/69988613.jpg",
     },
-    newsList: [
-      {
-        id: 1519631218506,
-        title: "外媒称香港回归15年打破经济将死预言",
-        date: "2012-04-21T11:32:04.000Z",
-        source: "中国新闻网",
-        firstImage: "http://img1.gtimg.com/news/pics/hv1/38/85/1076/69988613.jpg",
-      },
-    ]
+    newsList: []
   },
 
   onLoad() {
@@ -41,41 +34,25 @@ Page({
   },
 
   refreshNews: function (callback) {
-    wx.request({
+    wx.request(util.getRequestObject({
       url: newsListAPI,
-      data: {
-        type: this.data.selectedType
+      data: { type: this.data.selectedType },
+      success: result => {
+        this.setData(this.parseNewsResult(result));
       },
-      success: res => {
-        console.log(res);
-        let result = this.parsenewsResult(res);
-        if (result != null) {
-          this.setData({
-            hotNews: result.hotNews,
-            newsList: result.newsList
-          });
-        } else {
-          this.logFail("Refresh News result parse", res);
-        }
-      },
-      fail: res => {
-        this.logFail("Refresh News request", res);
-      },
-      complete: res => {
-        callback && callback();
-      }
-    });
+      fieldName: "News List",
+      callback: callback
+    }));
   },
 
-  parsenewsResult: function(res) {
-    if (res.data && res.data.code == "200" && res.data.message == "success") {
-      let newses = res.data.result;
+  parseNewsResult: function (newses) {
+    if (newses != null) {
       let firstHaveImage = null;
-
       newses.forEach(news => {
         news.date = news.date.slice(11, 16);
-        if (firstHaveImage == null && news.firstImage != null && news.firstImage != '')
+        if (firstHaveImage == null && news.firstImage != null && news.firstImage != '') {
           firstHaveImage = news;
+        }
         if (news.firstImage == '') news.firstImage == '/image/default.png';
         if (news.source == '') news.source = "其他来源";
       });
@@ -86,6 +63,7 @@ Page({
         hotNews: firstHaveImage
       };
     }
+    return null;
   },
 
   onNewsTypeTap: function(event) {
@@ -103,8 +81,4 @@ Page({
     });
   },
 
-  logFail(requestFor, res) {
-    console.log("Error when " + requestFor + ":");
-    console.log(res);
-  },
 })

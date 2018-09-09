@@ -1,0 +1,45 @@
+.detail-wrapper {
+  margin: 30rpx 30rpx;
+}
+
+.title {
+  font-size: 50rpx;
+  line-height: 70rpx;
+  font-weight: 400;
+  margin-bottom: 20rpx;
+}
+
+.info {
+  display: flex;
+  color: rgba(180, 180, 180, 0.9);
+  font-size: 32rpx;
+  line-height: 45rpx;
+  margin-bottom: 50rpx;
+}
+
+.date {
+  margin-left: 50rpx;
+}
+
+.read-count {
+  margin-left: auto;
+}
+
+.content {
+  margin: 30rpx 0;
+}
+
+.content-strong {
+  /* font-size: 40rpx; */
+  font-weight: bold;
+}
+
+.content-text {
+  font-size: 35rpx;
+  line-height: 50rpx;
+  opacity: 0.8;
+}
+
+.content-img {
+  width: 100%;
+}

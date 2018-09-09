@@ -1,1 +1,14 @@
-<view>{{newsId}}</view>
+<view class='detail-wrapper'>
+  <view class='title'>{{title}}</view>
+  <view class='info'>
+    <view class='source'>{{source}}</view>
+    <view class='date'>{{date}}</view>
+    <view class='read-count'>阅读 {{readCount}}</view>
+  </view>
+  <view class='content' wx:for='{{content}}'>
+    <view class='content-text' wx:if='{{item.type == "p"}}'>{{item.text}}</view>
+    <image class='content-img' wx:elif='{{item.type == "image"}}' src='{{item.src}}'></image>
+    <view class='content-strong' wx:elif='{{item.type == "strong"}}'>{{item.text}}</view>
+    <view class='content-other' wx:else>{{item.text}}</view>
+  </view>
+</view>
