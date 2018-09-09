@@ -1,5 +1,11 @@
 {
   "api": "https:\/\/restapi.amap.com/v3/weather/weatherInfo",
   "cityNum": "",
-  "apiKey": "f86012a8cd8a314e13718dc5a1bee2dd"
+  "apiKey": "f86012a8cd8a314e13718dc5a1bee2dd",
+
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#3094D6",
+  "navigationBarTitleText": "快读·资讯",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
 }

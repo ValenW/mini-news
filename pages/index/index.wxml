@@ -1,32 +1,34 @@
 <!--index.wxml-->
-<view class='news-type-wrapper'>
-  <view wx:for='{{newsTypes}}' class='news-type-item {{item.type == selectedType ? "selected" : ""}}' bindtap='onNewsTypeTap' wx:for-index='idx' data-index='{{idx}}'>
-    <view class='news-type-name'>{{item.name}}</view>
-    <view class='news-type-underline'></view>
-  </view>
-</view>
-
-<view class='hot-news-wrapper' bindtap='onNewsTap' data-news-id='{{hotNews.id}}'>
-  <image class='hot-bg-img' mode='aspectFill' src='{{hotNews.firstImage}}'></image>
-  <view class='hot-news'>
-    <view class='hot-tag'>热门</view>
-    <view class='hot-title'>{{hotNews.title}}</view>
-    <view class='news-source-info hot-source-info'>
-      <view class='news-source'>{{hotNews.source}}</view>
-      <view class='news-date'>{{hotNews.date}}</view>
+<view class='out-wrapper' bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend='onTouchEnd'>
+  <view class='news-type-wrapper'>
+    <view wx:for='{{newsTypes}}' class='news-type-item {{idx == selectedIndex ? "selected" : ""}}' bindtap='onNewsTypeTap' wx:for-index='idx' data-index='{{idx}}'>
+      <view class='news-type-name'>{{item.name}}</view>
+      <view class='news-type-underline'></view>
     </view>
   </view>
-</view>
 
-<view class='news-list-wrapper'>
-  <view wx:for='{{newsList}}' class='news-item' bindtap='onNewsTap' data-news-id='{{item.id}}'>
-    <view class='news-info'>
-      <view class='news-title'>{{item.title}}</view>
-      <view class='news-source-info'>
-        <view class='news-source'>{{item.source}}</view>
-        <view class='news-date'>{{item.date}}</view>
+  <view class='hot-news-wrapper' bindtap='onNewsTap' data-news-id='{{hotNews.id}}'>
+    <image class='hot-bg-img' mode='aspectFill' src='{{hotNews.firstImage}}'></image>
+    <view class='hot-news'>
+      <view class='hot-tag'>热门</view>
+      <view class='hot-title'>{{hotNews.title}}</view>
+      <view class='news-source-info hot-source-info'>
+        <view class='news-source'>{{hotNews.source}}</view>
+        <view class='news-date'>{{hotNews.date}}</view>
       </view>
     </view>
-    <image class='news-image' src='{{item.firstImage}}' mode='aspectFill'></image>
+  </view>
+
+  <view class='news-list-wrapper'>
+    <view wx:for='{{newsList}}' class='news-item' bindtap='onNewsTap' data-news-id='{{item.id}}'>
+      <view class='news-info'>
+        <view class='news-title'>{{item.title}}</view>
+        <view class='news-source-info'>
+          <view class='news-source'>{{item.source}}</view>
+          <view class='news-date'>{{item.date}}</view>
+        </view>
+      </view>
+      <image class='news-image' src='{{item.firstImage}}' mode='aspectFill'></image>
+    </view>
   </view>
 </view>

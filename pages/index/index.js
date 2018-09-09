@@ -11,10 +11,13 @@ const newsTypes = [
 
 var util = require('../../utils/util.js');
 
+var onMoving = false;
+var moveStartX;
+
 Page({
   data: {
     newsTypes: newsTypes,
-    selectedType: "gn",
+    selectedIndex: 0,
     hotNews: {
       id: 1519631218506,
       title: "外媒称香港回归15年打破经济将死预言",
@@ -36,7 +39,7 @@ Page({
   refreshNews: function (callback) {
     wx.request(util.getRequestObject({
       url: newsListAPI,
-      data: { type: this.data.selectedType },
+      data: { type: newsTypes[this.data.selectedIndex].type },
       success: result => {
         this.setData(this.parseNewsResult(result));
       },
@@ -69,7 +72,7 @@ Page({
   onNewsTypeTap: function(event) {
     console.log(event);
     let index = event.currentTarget.dataset.index;
-    this.setData({ "selectedType": newsTypes[index].type });
+    this.setData({ "selectedIndex": index });
     this.refreshNews();
   },
 
@@ -81,4 +84,43 @@ Page({
     });
   },
 
+
+  onTouchStart(event) {
+    moveStartX = event.touches[0].pageX;
+    onMoving = true;
+  },
+
+  onTouchEnd(event) {
+    onMoving = false;
+  },
+
+  onTouchMove(event) {
+    if (onMoving) {
+      let moveEnd = event.touches[0].pageX;
+      if (moveStartX - moveEnd > 50) { // move right
+        this.moveRight();
+        onMoving = false;
+      } else if (moveStartX - moveEnd < -50) { // move left
+        this.moveLeft();
+        onMoving = false;
+      }
+    }
+  },
+
+  moveRight() {
+    this.tryChangeType(1);
+  },
+
+  moveLeft() {
+    this.tryChangeType(-1);
+  },
+
+  tryChangeType(indexPlus) {
+    let minIndex = 0, maxIndex = newsTypes.length - 1, nowIndex = this.data.selectedIndex;
+    let newIndex = nowIndex + indexPlus;
+    if (newIndex >= minIndex && newIndex <= maxIndex) {
+      this.setData({ selectedIndex: newIndex});
+      this.refreshNews();
+    }
+  }
 })
